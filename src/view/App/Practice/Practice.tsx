@@ -60,33 +60,93 @@ export const Counter = () => {
     //EndDescriptor
 
     //Promise1
-    const personFirst = {
-        name:     'Oliver',
-        verified: true,
-    };
+    // const personFirst = {
+    //     name:     'Oliver',
+    //     verified: true,
+    // };
 
-    const personSecond = {
-        name: 'Alex',
-    };
+    // const personSecond = {
+    //     name: 'Alex',
+    // };
 
-    const isCustomerVerified = (person: any) => {
+    // const isCustomerVerified = (person: any) => {
+    //     return new Promise((resolve, reject) => {
+    //         if (person.verified) {
+    //             resolve(person.verified);
+    //         } else {
+    //             reject(new Error('Customer is not verified'));
+    //         }
+    //     });
+    // };
+
+    // isCustomerVerified(personFirst)
+    //     .then((status) => console.log(status)) // true
+    //     .catch((error) => console.log(`Error: ${error.message}`));
+
+    // isCustomerVerified(personSecond)
+    //     .then((status) => console.log(status))
+    //     .catch((error) => console.log(`Error: ${error.message}`)); // Customer is not verified
+    //EndPromise1
+
+    //Promise2
+    const customers = [
+        {
+            id:       'A1',
+            name:     'Oliver',
+            verified: true,
+        },
+        {
+            id:       'A2',
+            name:     'alex',
+            verified: true,
+        },
+    ];
+
+    const countries = [
+        {
+            id:      'A1',
+            country: 'usa',
+        },
+        {
+            id:      'A2',
+            country: 'poland',
+        },
+    ];
+
+    type Customers = {
+        id: string,
+        name: string,
+        verified?: boolean,
+        country?: string,
+    }[] | any[];
+
+    type Countries = {
+        id: string,
+        country: string,
+    }[];
+
+    const getCustomers = (customers: Customers, countries: Countries) => {
         return new Promise((resolve, reject) => {
-            if (person.verified) {
-                resolve(person.verified);
-            } else {
-                reject(new Error('Customer is not verified'));
+            const filtredCustomers = customers.filter((customer) => customer.verified);
+            const marged = filtredCustomers.map((customer) => ({
+                ...customer,
+                ...countries.find((country) => country.id === customer.id),
+            }));
+
+            console.log(marged.find((customer) => !customer.country));
+
+            if (marged.some((customer) => !customer.country)) {
+                return reject(new Error(`We don't have information about country for this customer: ${marged.find((customer) => !customer.country).name}`));
             }
+
+            resolve(marged);
         });
     };
 
-    isCustomerVerified(personFirst)
-        .then((status) => console.log(status)) // true
-        .catch((error) => console.log(`Error: ${error.message}`));
-
-    isCustomerVerified(personSecond)
-        .then((status) => console.log(status))
-        .catch((error) => console.log(`Error: ${error.message}`)); // Customer is not verified
-    //EndPromise1
+    getCustomers(customers, countries)
+        .then((customers) => console.log(customers))
+        .catch((error) => console.log(error.message));
+    //EndPromise2
 
     return (
         <>
