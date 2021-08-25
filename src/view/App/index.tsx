@@ -13,7 +13,7 @@ import { useTogglersRedux } from '../../bus/client';
 // Assets and Styles
 import { GlobalStyles, defaultTheme } from '../../assets';
 import { AppContainer } from './styles';
-import { Counter } from './Counter/Counter';
+import { Counter } from './Practice/Practice';
 
 export const App: FC = () => {
     const { setTogglerAction } = useTogglersRedux();
