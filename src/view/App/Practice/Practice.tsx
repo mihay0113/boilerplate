@@ -27,7 +27,7 @@ export const Counter = () => {
     const decrease = () => setCount(count - 1);
     //EndCounter
 
-    //Descriptor
+    //CopyDescriptor
     type User = { firstName: string, lastName: string };
     type UserData = { job: string, country: string, lastName: string };
 
@@ -38,7 +38,7 @@ export const Counter = () => {
     Object.defineProperty(userData, 'job', { configurable: false });
 
     const shallowMerge = (object1: any, object2: any) => {
-        const copy1 = Object.getOwnPropertyNames(object1).reduce(function(result: any, name: any) {
+        const copy1 = Object.getOwnPropertyNames(object1).reduce(function (result: any, name: any) {
             result[ name ] = object1[ name ];
 
             return result;
@@ -57,35 +57,35 @@ export const Counter = () => {
     };
 
     const result = Object.entries(shallowMerge(user, userData));
-    //EndDescriptor
+    //EndCopyDescriptor
 
     //Promise1
-    // const personFirst = {
-    //     name:     'Oliver',
-    //     verified: true,
-    // };
+    const personFirst = {
+        name:     'Oliver',
+        verified: true,
+    };
 
-    // const personSecond = {
-    //     name: 'Alex',
-    // };
+    const personSecond = {
+        name: 'Alex',
+    };
 
-    // const isCustomerVerified = (person: any) => {
-    //     return new Promise((resolve, reject) => {
-    //         if (person.verified) {
-    //             resolve(person.verified);
-    //         } else {
-    //             reject(new Error('Customer is not verified'));
-    //         }
-    //     });
-    // };
+    const isCustomerVerified = (person: any) => {
+        return new Promise((resolve, reject) => {
+            if (person.verified) {
+                resolve(person.verified);
+            } else {
+                reject(new Error('Customer is not verified'));
+            }
+        });
+    };
 
-    // isCustomerVerified(personFirst)
-    //     .then((status) => console.log(status)) // true
-    //     .catch((error) => console.log(`Error: ${error.message}`));
+    isCustomerVerified(personFirst)
+        .then((status) => console.log(`First person: ${status} | Promise1`)) // true
+        .catch((error) => console.log(`First person - Error: ${error.message} | Promise1`));
 
-    // isCustomerVerified(personSecond)
-    //     .then((status) => console.log(status))
-    //     .catch((error) => console.log(`Error: ${error.message}`)); // Customer is not verified
+    isCustomerVerified(personSecond)
+        .then((status) => console.log(`Second person: : ${status} | Promise1`))
+        .catch((error) => console.log(`Second person - Error: ${error.message} | Promise1`)); // Customer is not verified
     //EndPromise1
 
     //Promise2
@@ -96,9 +96,8 @@ export const Counter = () => {
             verified: true,
         },
         {
-            id:       'A2',
-            name:     'alex',
-            verified: true,
+            id:   'A2',
+            name: 'alex',
         },
     ];
 
@@ -133,8 +132,6 @@ export const Counter = () => {
                 ...countries.find((country) => country.id === customer.id),
             }));
 
-            console.log(marged.find((customer) => !customer.country));
-
             if (marged.some((customer) => !customer.country)) {
                 return reject(new Error(`We don't have information about country for this customer: ${marged.find((customer) => !customer.country).name}`));
             }
@@ -144,7 +141,7 @@ export const Counter = () => {
     };
 
     getCustomers(customers, countries)
-        .then((customers) => console.log(customers))
+        .then((customers) => console.dir(customers))
         .catch((error) => console.log(error.message));
     //EndPromise2
 
