@@ -12,7 +12,9 @@ const Span = styled.span`
   font-weight: 400;
 `;
 
-export const Tag = (title: any) => {
+export const Tag = ({ title }: any) => {
+    console.log(title);
+
     return (
         <Span>{title}</Span>
     );
