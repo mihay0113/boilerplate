@@ -16,10 +16,10 @@ export const Article = () => {
                 </Poster>
                 <Tags>
                     <div>
-                        <Tag title = { 'Literature' }></Tag>
+                        <Tag title = 'Literature'></Tag>
                     </div>
                     <div>
-                        <Tag title = { 'Books' }></Tag>
+                        <Tag title = 'Books'></Tag>
                     </div>
                 </Tags>
             </Header>
