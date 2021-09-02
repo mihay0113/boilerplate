@@ -19,7 +19,7 @@ export const useLocaleStorage = (key: string, initialValue: number): [number, an
     return [ count, save ];
 };
 
-export const Counter = () => {
+export const Practice = () => {
     //Counter
     const [ count, setCount ] = useLocaleStorage('count', 0);
 
