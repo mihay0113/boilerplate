@@ -13,6 +13,8 @@ import { useTogglersRedux } from '../../bus/client';
 // Assets and Styles
 import { GlobalStyles, defaultTheme } from '../../assets';
 import { AppContainer } from './styles';
+// import { Practice } from './Practice/Practice';
+import { News } from '../components/News';
 
 export const App: FC = () => {
     const { setTogglerAction } = useTogglersRedux();
@@ -35,6 +37,8 @@ export const App: FC = () => {
             <AppContainer>
                 <TopBar />
                 <Routes />
+                {/* <Practice /> */}
+                <News />
             </AppContainer>
         </ThemeProvider>
     );
