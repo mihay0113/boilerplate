@@ -17,9 +17,6 @@ type ArticleTypes = {
 export const Article = ({ source }: { source: ArticleTypes}) => {
     const { title, description, published, likes, comments, image, tags } = source;
 
-
-    console.log(source);
-
     return (
         <Section>
             <Header>
