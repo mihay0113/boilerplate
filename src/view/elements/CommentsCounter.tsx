@@ -14,8 +14,8 @@ const Span = styled.span`
   }
 `;
 
-export const CommentsCounter = () => {
+export const CommentsCounter = ({ counts }: { counts: number }) => {
     return (
-        <Span>10</Span>
+        <Span>{counts}</Span>
     );
 };

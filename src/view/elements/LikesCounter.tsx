@@ -14,8 +14,8 @@ const Span = styled.span`
   }
 `;
 
-export const LikesCounter = () => {
+export const LikesCounter = ({ counts }: { counts: number}) => {
     return (
-        <Span>315</Span>
+        <Span>{counts}</Span>
     );
 };
