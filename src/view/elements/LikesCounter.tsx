@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const Span = styled.span`
@@ -15,7 +16,20 @@ const Span = styled.span`
 `;
 
 export const LikesCounter = ({ counts }: { counts: number}) => {
+    const [ count, setCount ] = useState(counts);
+    const [ isClicked, setIsClicked ] = useState(false);
+
+    const handleClickChanger = () => {
+        if (!isClicked) {
+            setCount(count + 1);
+        } else {
+            setCount(count - 1);
+        }
+
+        setIsClicked(!isClicked);
+    };
+
     return (
-        <Span>{counts}</Span>
+        <Span onClick = { handleClickChanger }>{count}</Span>
     );
 };
