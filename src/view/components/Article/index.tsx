@@ -11,13 +11,15 @@ type ArticleTypes = {
     likes: number;
     comments: number;
     image: string;
-    tags: {
-        firstTag: string,
-        secondTag: string,
-    };
-}
+    tags: string[];
+};
 
-export const Article = ({ title, description, published, likes, comments, image, tags }: ArticleTypes) => {
+export const Article = ({ source }: { source: ArticleTypes}) => {
+    const { title, description, published, likes, comments, image, tags } = source;
+
+
+    console.log(source);
+
     return (
         <Section>
             <Header>
@@ -29,10 +31,10 @@ export const Article = ({ title, description, published, likes, comments, image,
                 </Poster>
                 <Tags>
                     <div>
-                        <Tag source = { tags.firstTag }></Tag>
+                        <Tag source = { tags[ 0 ] }></Tag>
                     </div>
                     <div>
-                        <Tag source = { tags.secondTag }></Tag>
+                        <Tag source = { tags[ 1 ] }></Tag>
                     </div>
                 </Tags>
             </Header>
