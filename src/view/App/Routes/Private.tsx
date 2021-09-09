@@ -37,6 +37,10 @@ export const Private: FC = () => {
                 path = '/people'>
                 <People />
             </Route>
+            <Route
+                path = '/tabs'>
+                <People />
+            </Route>
             <Redirect to = '/form' />
         </Switch>
     );

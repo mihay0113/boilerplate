@@ -36,7 +36,6 @@ export const People = () => (
                 path = '/home'
                 to = '/'
             />
-            <h2>Page not found</h2>
         </Switch>
     </>
 );

@@ -37,6 +37,11 @@ export const TopBar: FC = () => {
                     People
                 </Button>
             </Link>
+            <Link to = '/tabs'>
+                <Button type = 'button'>
+                    Tabs
+                </Button>
+            </Link>
             <UserMenu />
         </TopbarContainer>
     );
