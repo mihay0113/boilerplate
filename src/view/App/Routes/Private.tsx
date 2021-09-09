@@ -4,6 +4,7 @@ import { Switch, Route, Redirect, useHistory, useLocation } from 'react-router-d
 
 // Pages
 import { Main } from '../../pages';
+import { Practice } from '../../pages/Practice/Practice';
 
 export const Private: FC = () => {
     const { push } = useHistory();
@@ -21,6 +22,10 @@ export const Private: FC = () => {
                 exact
                 path = '/'>
                 <Main />
+            </Route>
+            <Route
+                path = '/practice'>
+                <Practice />
             </Route>
             <Redirect to = '/form' />
         </Switch>
