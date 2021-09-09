@@ -4,8 +4,9 @@ import { Switch, Route, Redirect, useHistory, useLocation } from 'react-router-d
 
 // Pages
 import { Main } from '../../pages';
-import { Practice } from '../../pages/Practice/Practice';
+import { Practice } from '../../pages/Practice';
 import { News } from '../../pages/News';
+import { People } from '../../pages/People';
 
 export const Private: FC = () => {
     const { push } = useHistory();
@@ -31,6 +32,10 @@ export const Private: FC = () => {
             <Route
                 path = '/news'>
                 <News />
+            </Route>
+            <Route
+                path = '/people'>
+                <People />
             </Route>
             <Redirect to = '/form' />
         </Switch>
