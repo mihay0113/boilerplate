@@ -8,6 +8,10 @@ import { Practice } from '../../pages/Practice';
 import { News } from '../../pages/News';
 import { People } from '../../pages/People';
 import { AccordeonList } from '../../pages/Accordeon';
+import { ContactsPage } from '../../pages/ContactsPage';
+import { book } from './book';
+import { Secret } from '../../elements/Secret';
+import { StudentRegistration } from '../../pages/StudentRegistration';
 
 export const Private: FC = () => {
     const { push } = useHistory();
@@ -23,30 +27,38 @@ export const Private: FC = () => {
         <Switch>
             <Route
                 exact
-                path = '/'>
+                path = { book.root }>
                 <Main />
             </Route>
             <Route
-                path = '/practice'>
+                path =  { book.practice }>
                 <Practice />
             </Route>
             <Route
-                path = '/news'>
+                path =  { book.news }>
                 <News />
             </Route>
             <Route
-                path = '/people'>
+                path = { book.people }>
                 <People />
             </Route>
             <Route
-                path = '/tabs'>
-                <People />
-            </Route>
-            <Route
-                path = '/accordeon'>
+                path =  { book.accordeon }>
                 <AccordeonList />
             </Route>
-            <Redirect to = '/form' />
+            <Route
+                path = { book.contacts }>
+                <ContactsPage />
+            </Route>
+            <Route
+                path = { book.secret + '/:value?' }
+                render = { ({ match }) => <Secret match = { match }/> }>
+            </Route>
+            <Route
+                path = { book.signUp }>
+                <StudentRegistration />
+            </Route>
+            <Redirect to = { book.form } />
         </Switch>
     );
 };

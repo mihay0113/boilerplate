@@ -22,12 +22,23 @@ const accordeons: any = [
     },
 ];
 
-const preparedAccordeons = accordeons.map((accordeon: any, index: any) => ({
+type AccordeonTypes = {
+    question: string,
+    answer: string,
+}
+
+type PreparedAccordeonTypes = {
+    question: string,
+    answer: string,
+    id: number,
+}
+
+const preparedAccordeons = accordeons.map((accordeon: AccordeonTypes, index: number) => ({
     ...accordeon,
     id: index + 1,
 }));
 
-export const AccordeonList = () => {
+export const AccordeonList = ({ title = 'Accordeon' }) => {
     const [ selectedId, setSelectedId ] = useState(0);
 
     const handleClick = (id: number) => {
@@ -38,14 +49,12 @@ export const AccordeonList = () => {
         }
     };
 
-    console.log(selectedId);
-
     return (
         <Section>
-            <H1>Accordeon</H1>
-            {preparedAccordeons.map((accordeon: any) => {
+            <H1>{title}</H1>
+            {preparedAccordeons.map((accordeon: PreparedAccordeonTypes) => {
                 return selectedId === accordeon.id ? (
-                    <Item>
+                    <Item key = { accordeon.id }>
                         <SelectedQuestion>
                             <span>{accordeon.question}</span>
                         </SelectedQuestion>
@@ -57,8 +66,7 @@ export const AccordeonList = () => {
                     </Item>
 
                 ) : (
-                    <Item>
-
+                    <Item key = { accordeon.id }>
                         <Question onClick = { () => handleClick(accordeon.id) }>
                             <span>{accordeon.question}</span>
                         </Question>

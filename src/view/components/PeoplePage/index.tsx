@@ -1,6 +1,7 @@
 import React from 'react';
 import { PeopleTable } from '../../elements/PeopleTable';
 import { PersonType } from '../../pages/People/types';
+import { Spinner } from '../../elements';
 
 const BASE_URL = 'https://mate-academy.github.io/react_people-table/api';
 
@@ -11,7 +12,7 @@ export class PeoplePage extends React.Component {
 
     componentDidMount() {
         this.getPeople()
-            .then((peopleFromServer) => {
+            .then((peopleFromServer) => setTimeout(() => {
                 const peopleWithParents = peopleFromServer.map((person: PersonType) => ({
                     ...person,
                     mother: peopleFromServer.find((human: PersonType) => human.name === person.motherName),
@@ -21,7 +22,7 @@ export class PeoplePage extends React.Component {
                 this.setState({
                     people: peopleWithParents,
                 });
-            });
+            }, 3000));
     }
 
     getPeople = () => fetch(`${BASE_URL}/people.json`)
@@ -43,7 +44,7 @@ export class PeoplePage extends React.Component {
                     ? (
                         <PeopleTable people = { people } />
                     )
-                    : <h2 className = 'title'>Loading...</h2>}
+                    : (<Spinner />)}
             </>
         );
     }
