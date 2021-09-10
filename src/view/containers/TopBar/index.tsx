@@ -37,9 +37,9 @@ export const TopBar: FC = () => {
                     People
                 </Button>
             </Link>
-            <Link to = '/tabs'>
+            <Link to = '/accordeon'>
                 <Button type = 'button'>
-                    Tabs
+                    Accordeon
                 </Button>
             </Link>
             <UserMenu />
