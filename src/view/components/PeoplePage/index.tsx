@@ -7,7 +7,8 @@ const BASE_URL = 'https://mate-academy.github.io/react_people-table/api';
 
 export class PeoplePage extends React.Component {
     state = {
-        people: [],
+        people:        [],
+        isServerError: false,
     };
 
     componentDidMount() {
@@ -32,19 +33,25 @@ export class PeoplePage extends React.Component {
             }
 
             return response.json();
-        });
+        })
+        .catch(() => { this.setState({ isServerError: true }); });
 
     render() {
         const { people } = this.state;
+        let Main = <div></div>;
+        if (this.state.isServerError) {
+            Main = <h1>Error</h1>;
+        } else {
+            people.length > 0
+                ? Main = <PeopleTable people = { people } />
+
+                : Main = <Spinner />;
+        }
 
         return (
             <>
                 <h2 className = 'title'>People Page</h2>
-                {people.length > 0
-                    ? (
-                        <PeopleTable people = { people } />
-                    )
-                    : (<Spinner />)}
+                {Main}
             </>
         );
     }
