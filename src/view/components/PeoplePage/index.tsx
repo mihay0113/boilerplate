@@ -38,7 +38,7 @@ export class PeoplePage extends React.Component {
 
     render() {
         const { people } = this.state;
-        let Main = <div></div>;
+        let Main = null;
         if (this.state.isServerError) {
             Main = <h1>Error</h1>;
         } else {
