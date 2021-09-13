@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 // Components
-import { UserMenu } from './UserMenu';
+// import { UserMenu } from './UserMenu';
 import { Button } from '../../elements';
 import { book } from '../../App/Routes/book';
 
@@ -58,7 +58,7 @@ export const TopBar: FC = () => {
                     Sign Up
                 </Button>
             </Link>
-            <UserMenu />
+            {/* <UserMenu /> */}
         </TopbarContainer>
     );
 };

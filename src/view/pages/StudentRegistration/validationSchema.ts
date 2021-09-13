@@ -8,8 +8,7 @@ export const validationSchema = Yup.object().shape({
     email: Yup.string().email('Should be a valid email')
         .required('Should be provided'),
     age: Yup.number().min(6, 'Must be more than 6 years old')
-        .max(60, 'Must be less than 60 years old')
-        .required('Should be provided'),
+        .max(60, 'Must be less than 60 years old'),
     speciality: Yup.string().required('Should be provided')
         .oneOf([ 'designer', 'developer', 'writer' ], 'You should put a correct job'),
     sex: Yup.string()

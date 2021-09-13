@@ -1,12 +1,22 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import { initialValues } from './initialValues';
+import { validationSchema } from './validationSchema';
 
 import { MyInput } from '../../elements/formElements/myInput';
 import { MySelect } from '../../elements/formElements/mySelect';
 import styled from 'styled-components';
 
-export const printInfo = (values: any) => {
+type InfoTypes = {
+    age: number,
+    email: string,
+    firstName: string,
+    sex: string,
+    speciality: string,
+    sureName: string,
+}
+
+export const printInfo = (values: InfoTypes) => {
     console.log(values);
 };
 
@@ -23,6 +33,7 @@ export const StudentRegistration = () => (
         <H1>Subscribe</H1>
         <Formik
             initialValues = { initialValues }
+            validationSchema = { validationSchema }
             onSubmit = { printInfo }>
             <Form>
                 <MyInput

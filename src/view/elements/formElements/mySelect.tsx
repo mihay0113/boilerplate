@@ -2,7 +2,13 @@ import React from 'react';
 import { useField } from 'formik';
 import { Label } from './styles';
 
-export const MySelect = ({ label, ...props }: any)=>{
+type MySelectTypes = {
+    label: string,
+    name: string,
+    children: {}[],
+};
+
+export const MySelect = ({ label, ...props }: MySelectTypes)=>{
     const [ field, meta ] = useField({ ...props });
 
     return (
