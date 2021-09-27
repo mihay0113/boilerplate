@@ -4,38 +4,50 @@ import { CommentsCounter } from '../../elements/CommentsCounter';
 import { LikesCounter } from '../../elements/LikesCounter';
 import { Tag } from '../../elements/Tag';
 
-export const Article = () => {
+type ArticleTypes = {
+    title: string;
+    description: string;
+    published: string;
+    likes: number;
+    comments: number;
+    image: string;
+    tags: string[];
+};
+
+export const Article = ({ source }: { source: ArticleTypes}) => {
+    const { title, description, published, likes, comments, image, tags } = source;
+
     return (
         <Section>
             <Header>
                 <Poster>
                     <img
                         alt = 'ship'
-                        src = 'https://miro.medium.com/max/1280/1*N6eYi8bOQ9tyZy8NGWDNKA.png'
+                        src = { image }
                     />
                 </Poster>
                 <Tags>
                     <div>
-                        <Tag title = 'Literature'></Tag>
+                        <Tag source = { tags[ 0 ] }></Tag>
                     </div>
                     <div>
-                        <Tag title = 'Books'></Tag>
+                        <Tag source = { tags[ 1 ] }></Tag>
                     </div>
                 </Tags>
             </Header>
             <Main>
                 <h1>
-                    American writer of bad cowboy stories arrived in
+                    {title}
                 </h1>
                 <p>
-                    Volunteering to help people in need combined with travelling to faraway places is a new
+                    {description}
                 </p>
             </Main>
             <Footer>
-                <span>15.07.2017</span>
+                <span>{published}</span>
                 <Controls>
-                    <CommentsCounter />
-                    <LikesCounter />
+                    <CommentsCounter counts = { likes } />
+                    <LikesCounter counts = { comments } />
                 </Controls>
             </Footer>
         </Section>
